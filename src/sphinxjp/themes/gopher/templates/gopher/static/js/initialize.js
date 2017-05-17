@@ -1,4 +1,4 @@
-$(document).ready(function(){
+function initializeDOM() {
   $("body > div.section").each(function(i, e){
     var target = null;
     var addElements = [];
@@ -22,4 +22,9 @@ $(document).ready(function(){
      }
      $("a.headerlink").hide();
   });
-});
+}
+if (window['_DCL']) {
+  initializeDOM();
+} else {
+  document.addEventListener('DOMContentLoaded', initializeDOM, false);
+}
