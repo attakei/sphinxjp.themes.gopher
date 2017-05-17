@@ -2,7 +2,25 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-var PERMANENT_URL_PREFIX = '_static/css/';
+// Copyright 2012 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+// Ref http://qiita.com/kijtra/items/472cb34a8f0eb6dde459
+var current = (function() {
+    if (document.currentScript) {
+        return document.currentScript.src;
+    } else {
+        var scripts = document.getElementsByTagName('script'),
+        script = scripts[scripts.length-1];
+        if (script.src) {
+            return script.src;
+        }
+    }
+})();
+
+// Ref http://planetozh.com/blog/2008/04/javascript-basename-and-dirname/
+var PERMANENT_URL_PREFIX = current.replace(/\\/g,'/').replace(/\/[^\/]*$/, '').replace(/\\/g,'/').replace(/\/[^\/]*$/, '') + '/css/';
 
 var SLIDE_CLASSES = ['far-past', 'past', 'current', 'next', 'far-next'];
 
